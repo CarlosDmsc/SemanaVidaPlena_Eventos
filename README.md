@@ -12,7 +12,7 @@ Projeto fictício de programação orientada à objetos.
 - Encapsulamento de classes e uso de getters/setters.
 - Pelo menos 6 métodos para consultas estratégicas.
 
-## 📜 Descrição
+## Descrição
 Aplicação em **Java** para gerenciar os **eventos da Semana Vida Plena**, um festival de saúde, cultura e bem-estar.  
 O sistema permite cadastrar eventos (palestras, oficinas e shows), participantes e controlar inscrições, além de gerar consultas simples para apoiar decisões da organização.
 
