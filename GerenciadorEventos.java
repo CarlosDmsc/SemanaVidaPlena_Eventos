@@ -1,6 +1,7 @@
 // GerenciadorEventos
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 public class GerenciadorEventos {
     private ArrayList<Evento> listaEventos;
@@ -14,21 +15,33 @@ public class GerenciadorEventos {
     }
 
     public void listarEventos() {
-        for (Evento e : listaEventos) {
-            System.out.println("Título: " + e.getTitulo() + " | Tipo: " + e.getTipo()
-                    + " | Data: " + e.getData() + " | Vagas: " + e.vagasRestantes());
+        if (listaEventos.isEmpty()) {
+            System.out.println("Nenhum evento cadastrado.");
+        } else {
+            for (Evento e : listaEventos) {
+                System.out.println(e);
+            }
         }
     }
 
-    public Evento eventoMaisCheio() {
-        Evento maisCheio = null;
-        int maior = -1;
+    public Evento buscarEventoPorTitulo(String titulo) {
         for (Evento e : listaEventos) {
-            if (e.totalInscritos() > maior) {
-                maior = e.totalInscritos();
-                maisCheio = e;
+            if (e.getTitulo().equalsIgnoreCase(titulo)) {
+                return e;
             }
         }
-        return maisCheio;
+        return null;
+    }
+
+    public Evento eventoMaisCheio() {
+        return listaEventos.stream()
+                .max(Comparator.comparingInt(Evento::totalInscritos))
+                .orElse(null);
+    }
+
+    public void listarPorLotacao() {
+        listaEventos.stream()
+                .sorted(Comparator.comparingInt(Evento::totalInscritos).reversed())
+                .forEach(System.out::println);
     }
 }
