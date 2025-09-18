@@ -1,5 +1,7 @@
 // Participante
 
+import java.util.Objects;
+
 public class Participante {
     private String nome;
     private String email;
@@ -9,11 +11,20 @@ public class Participante {
         this.email = email;
     }
 
-    public String getNome() {
-        return nome;
+    public String getNome() { return nome; }
+    public String getEmail() { return email; }
+
+    // para evitar inscrições duplicadas no mesmo evento
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Participante)) return false;
+        Participante p = (Participante) o;
+        return email.equalsIgnoreCase(p.email);
     }
 
-    public String getEmail() {
-        return email;
+    @Override
+    public int hashCode() {
+        return Objects.hash(email.toLowerCase());
     }
 }
